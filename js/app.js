@@ -5,7 +5,6 @@ window.onload = () => {
     cargarIngresos();
     cargarEgresos()
 }
-
 class Dato {
     constructor(descripcion, valor) {
         this._descripcion = descripcion;
@@ -24,7 +23,6 @@ class Dato {
         this._valor = valor;
     }
 }
-
 class Ingreso extends Dato {
     static contadorIngresos = 0;
     constructor(descripcion, valor) {
@@ -52,7 +50,6 @@ const ingresos = [
 
 const egresos = [
 ];
-
 const totalIngresos = () => {
     let totalIngreso = 0;
     for (let ingreso of ingresos) {
@@ -67,7 +64,6 @@ const totalEgresos = () => {
     }
     return totalEgreso;
 }
-
 const cargarCabecero = () => {
     let presupuesto = totalIngresos() - totalEgresos();
     let porcentajeEgreso = totalEgresos() / totalIngresos();
@@ -76,23 +72,19 @@ const cargarCabecero = () => {
     document.getElementById('ingresos').innerHTML = moneyFormat(totalIngresos());
     document.getElementById('egresos').innerHTML = '-' + moneyFormat(totalEgresos());
 }
-
 const moneyFormat = valor => {
     return valor.toLocaleString('en-US', { style: 'currency', currency: 'USD', minmumFractionDigits: 2 });
 }
 const formatoPorcentaje = valor => {
     return valor.toLocaleString('en-US', { style: 'percent', minimumFractionDigits: 2 })
 }
-
 const cargarIngresos = () => {
     let ingresosHTML = '';
     for (let ingreso of ingresos) {
         ingresosHTML += crearIngresoHTML(ingreso);
     }
     document.getElementById('listaIngresos').innerHTML = ingresosHTML;
-
 }
-
 const crearIngresoHTML = (ingreso) => {
     let ingresoHTML = `
     <div class="elemento limpiarEstilos">
@@ -110,15 +102,12 @@ const crearIngresoHTML = (ingreso) => {
 
     return ingresoHTML;
 }
-
 const eliminarIngreso = id => {
     let indiiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id);
     ingresos.splice(indiiceEliminar, 1);
     cargarCabecero();
     cargarIngresos();
 }
-
-
 const cargarEgresos = () => {
     let egresoHTML = '';
     for (let egreso of egresos) {
@@ -126,7 +115,6 @@ const cargarEgresos = () => {
     }
     document.getElementById('listaEgresos').innerHTML = egresoHTML;
 }
-
 const crearEgresoHTML = (egreso) => {
     let egresoHTML = `
     <div class="elemento limpiarEstilos">
@@ -141,7 +129,6 @@ const crearEgresoHTML = (egreso) => {
         </div>
     </div>
 </div>
-
     `
     return egresoHTML;
 }
